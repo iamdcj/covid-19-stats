@@ -4,7 +4,7 @@
   "description": "Statistic fetcher for covid-19",
   "main": "scripts.js",
   "scripts": {
-    "build": "parcel build index.html --public-url /covid-19-stats",
+    "build": "parcel build index.html -d docs",
     "test": "test"
   },
   "repository": {
