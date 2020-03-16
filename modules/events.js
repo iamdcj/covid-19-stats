@@ -10,8 +10,4 @@ function handleSearch(event) {
   renderStatistics(results);
 }
 
-if (!searchInput) {
-  return;
-}
-
 searchInput.addEventListener("keyup", handleSearch, true);
