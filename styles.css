@@ -18,21 +18,20 @@ body {
 *:after {
   box-sizing: inherit;
 }
-
-footer,
-header {
+.site-footer,
+.site-header {
   display: flex;
-  padding: 10px 10px;
-}
-
-footer {
   align-items: center;
   justify-content: space-between;
+  padding: 15px 10px;
+}
+
+.site-footer {
   background-color: var(--color-c);
   color: var(--white);
 }
 
-header > span {
+.site-header > span {
   display: inline-block;
   margin: 0 10px;
 }
@@ -105,4 +104,20 @@ th {
 .loader.is--active {
   opacity: 1;
   visibility: visible;
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.total {
+  font-size: 14px;
+}
+
+tr:nth-child(even) {
+  background: rgb(229, 238, 252);
 }

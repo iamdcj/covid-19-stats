@@ -15,8 +15,8 @@ export const statisticsui = stats =>
 const statisticUI = ({ country, lastUpdate, confirmed, deaths }, index) =>
   ` <tr>
         <td>${country}</td>
-        <td class="bg--orange-light text--center">${confirmed}</td>
-        <td class="bg--red-light text--center text--strong">${deaths}</td>
+        <td class="text--center">${confirmed}</td>
+        <td class="text--center text--strong">${deaths}</td>
         <td class="text--center">
           ${deaths ? returnMortalityRate(deaths, confirmed) : `N/A`}
         </td>

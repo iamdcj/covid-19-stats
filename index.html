@@ -12,31 +12,31 @@
 <body>
 
   <main>
-    <header>
-      <h1>COVID-19</h1>
-      <span> | </span>
-      <p>Total Cases Worldwide: <span class="total"></span></p>
+    <header class="site-header">
+      <h1>COVID-19 | Live Statistics (via <a href="https://www.arcgis.com/index.html">ArcGIS Online</a>)</h1>
+      <div class="control">
+        <label for="query">Search by country</label>
+        <input type="text" name="query" id="query" placeholder="e.g. France" />
+      </div>
     </header>
-    <div>
-      <label for="query">Search by country</label>
-      <input type="text" name="query" id="query" placeholder="e.g. France" />
-    </div>
     <section>
+
       <table>
         <thead>
           <tr>
-            <th>🌍 Country</th>
-            <th class="bg--orange text--center">✔ Confirmed</th>
-            <th class="bg--red text--center">☠️Deaths</th>
+            <th>Country</th>
+            <th class="text--center">Confirmed (<span class="total total-cases"></span>)</th>
+            <th class="text--center">Deaths (<span class="total total-deaths"></span>)</th>
             <th class="text--center">Mortality Rate</th>
-            <th>📅 Last Updated</th>
+            <th>Last Updated</th>
           </tr>
         </thead>
         <tbody class="root"></tbody>
       </table>
     </section>
   </main>
-  <footer>
+
+  <footer class="site-footer">
     <small>&copy; dcj</small>
     <nav>
       <ul>

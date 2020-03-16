@@ -1,12 +1,17 @@
 import { statisticsui } from "./ui";
-import { totalCases, container } from "./DOM";
+import { totalCases, totalDeaths, container } from "./DOM";
 import { statistics } from "./data";
 
 export const renderStatistics = stats => {
-  const total = [...statistics].reduce((total, stat) => {
-    return total + stat.confirmed;
-  }, 0);
+  totalDeaths.innerText = [...statistics].reduce(
+    (total, stat) => total + stat.deaths,
+    0
+  );
 
-  totalCases.innerText = total;
+  totalCases.innerText = [...statistics].reduce(
+    (total, stat) => total + stat.confirmed,
+    0
+  );
+
   container.innerHTML = statisticsui(stats);
 };
