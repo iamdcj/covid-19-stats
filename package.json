@@ -1,0 +1,22 @@
+{
+  "name": "covid-19",
+  "version": "1.0.0",
+  "description": "Statistic fetcher for covid-19",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamdcj/covid-19-stats.git"
+  },
+  "author": "David Christian Jones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamdcj/covid-19-stats/issues"
+  },
+  "homepage": "https://github.com/iamdcj/covid-19-stats#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
