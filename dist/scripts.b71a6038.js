@@ -165,10 +165,10 @@ exports.statisticsui = void 0;
 var _dateTime = require("./date-time");
 
 var statisticsui = function statisticsui(stats) {
-  return "\n  <table>\n  <tr>\n    <th>\uD83C\uDF0D Country</th>\n    <th>\u2714 Confirmed</th>\n    <th>\u2620\uFE0FDeaths</th>\n    <th>Mortality Rate</th>\n    <th>\uD83D\uDCC5 Last Updated</th>\n  </tr>\n    ".concat(stats.map(function (statistic) {
-    return statisticUI(statistic);
-  }).sort(function (a, b) {
+  return "\n  <table>\n  <tr>\n    <th>\uD83C\uDF0D Country</th>\n    <th>\u2714 Confirmed</th>\n    <th>\u2620\uFE0FDeaths</th>\n    <th>Mortality Rate</th>\n    <th>\uD83D\uDCC5 Last Updated</th>\n  </tr>\n    ".concat(stats.sort(function (a, b) {
     return a.confirmed > b.confirmed ? -1 : 1;
+  }).map(function (statistic) {
+    return statisticUI(statistic);
   }).join(""), "\n  </table>\n");
 };
 

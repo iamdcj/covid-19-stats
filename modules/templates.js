@@ -10,8 +10,8 @@ export const statisticsui = stats => `
     <th>📅 Last Updated</th>
   </tr>
     ${stats
-      .map(statistic => statisticUI(statistic))
       .sort((a, b) => (a.confirmed > b.confirmed ? -1 : 1))
+      .map(statistic => statisticUI(statistic))
       .join("")}
   </table>
 `;
