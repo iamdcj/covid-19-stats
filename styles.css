@@ -3,7 +3,9 @@
   --color-b: rgb(148, 98, 98);
   --color-c: rgb(244, 129, 7);
   --color-d: rgb(244, 179, 110);
-  --color-e: rgb(205, 205, 205);
+  --color-e: rgb(92, 152, 247);
+  --color-f: rgb(222, 233, 252);
+  --color-g: rgb(225, 225, 225);
   --white: #fff;
 }
 
@@ -21,12 +23,17 @@ body {
 .site-footer,
 .site-header {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
   padding: 15px 10px;
 }
 
+a {
+  color: currentColor;
+}
+
 .site-footer {
+  justify-content: space-between;
   background-color: var(--color-c);
   color: var(--white);
 }
@@ -36,17 +43,36 @@ body {
   margin: 0 10px;
 }
 
-table {
+.site-header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
+  max-width: 900px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  border-left: 1px solid var(--color-g);
+  border-top: 1px solid var(--color-g);
+  border-bottom: 1px solid var(--color-g);
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 30px;
 }
 
 td,
 th {
+  border-right: 1px solid var(--color-g);
   padding: 10px;
 }
 
 tr {
-  border-bottom: 1px solid var(--color-e);
+  border-bottom: 1px solid var(--color-g);
 }
 
 th {
@@ -119,5 +145,9 @@ th {
 }
 
 tr:nth-child(even) {
-  background: rgb(229, 238, 252);
+  background: var(--color-f);
+}
+
+input {
+  padding: 10px;
 }
