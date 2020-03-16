@@ -165,10 +165,7 @@ exports.statisticsui = void 0;
 var _dateTime = require("./date-time");
 
 var statisticsui = function statisticsui(stats) {
-  return "\n  <ul class=\"grid\">\n    ".concat(stats.filter(function (_ref) {
-    var country = _ref.country;
-    return country !== "China";
-  }).map(function (statistic) {
+  return "\n  <ul class=\"grid\">\n    ".concat(stats.map(function (statistic) {
     return statisticUI(statistic);
   }).sort(function (a, b) {
     return a.confirmed > b.confirmed ? -1 : 1;
@@ -177,11 +174,11 @@ var statisticsui = function statisticsui(stats) {
 
 exports.statisticsui = statisticsui;
 
-var statisticUI = function statisticUI(_ref2) {
-  var country = _ref2.country,
-      lastUpdate = _ref2.lastUpdate,
-      confirmed = _ref2.confirmed,
-      deaths = _ref2.deaths;
+var statisticUI = function statisticUI(_ref) {
+  var country = _ref.country,
+      lastUpdate = _ref.lastUpdate,
+      confirmed = _ref.confirmed,
+      deaths = _ref.deaths;
   return "\n    <li>\n      <div class=\"stat  grid__item\">\n        <h2>\uD83C\uDF0D ".concat(country, "</h2>\n        <p>\u2623\uFE0F ").concat(confirmed, " confirmed cases</p>\n        <p>\u2620\uFE0F ").concat(deaths, " as of ").concat((0, _dateTime.returnDate)(lastUpdate), "</p>\n      </div>\n    </li>\n  ");
 };
 },{"./date-time":"modules/date-time.js"}],"modules/DOM.js":[function(require,module,exports) {

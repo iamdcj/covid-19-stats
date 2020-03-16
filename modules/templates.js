@@ -3,7 +3,6 @@ import { returnDate } from "./date-time";
 export const statisticsui = stats => `
   <ul class="grid">
     ${stats
-      .filter(({ country }) => country !== "China")
       .map(statistic => statisticUI(statistic))
       .sort((a, b) => (a.confirmed > b.confirmed ? -1 : 1))
       .join("")}
