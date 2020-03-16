@@ -165,21 +165,21 @@ exports.statisticsui = void 0;
 var _dateTime = require("./date-time");
 
 var statisticsui = function statisticsui(stats) {
-  return "\n  <table>\n  <tr>\n    <th>\uD83C\uDF0D Country</th>\n    <th>\u2714 Confirmed</th>\n    <th>\u2620\uFE0FDeaths</th>\n    <th>Mortality Rate</th>\n    <th>\uD83D\uDCC5 Last Updated</th>\n  </tr>\n    ".concat(stats.sort(function (a, b) {
+  return "\n  <table>\n  <tr>\n    <th>#</th>\n    <th>\uD83C\uDF0D Country</th>\n    <th>\u2714 Confirmed</th>\n    <th>\u2620\uFE0FDeaths</th>\n    <th>Mortality Rate</th>\n    <th>\uD83D\uDCC5 Last Updated</th>\n  </tr>\n    ".concat(stats.sort(function (a, b) {
     return a.confirmed > b.confirmed ? -1 : 1;
-  }).map(function (statistic) {
-    return statisticUI(statistic);
+  }).map(function (statistic, index) {
+    return statisticUI(statistic, index);
   }).join(""), "\n  </table>\n");
 };
 
 exports.statisticsui = statisticsui;
 
-var statisticUI = function statisticUI(_ref) {
+var statisticUI = function statisticUI(_ref, index) {
   var country = _ref.country,
       lastUpdate = _ref.lastUpdate,
       confirmed = _ref.confirmed,
       deaths = _ref.deaths;
-  return "\n    <tr>\n        <td>".concat(country, "</td>\n        <td>").concat(confirmed, "</td>\n        <td>").concat(deaths, "</td>\n        <td>").concat(deaths ? "".concat(Math.round(deaths * 100 / confirmed)) : "N/A", "</td>\n        <td>").concat((0, _dateTime.returnDate)(lastUpdate), "</td>\n    </tr>\n  ");
+  return " <tr>\n        <td>".concat(index + 1, "</td>\n        <td>").concat(country, "</td>\n        <td>").concat(confirmed, "</td>\n        <td>").concat(deaths, "</td>\n        <td>").concat(deaths ? "".concat(Math.round(deaths * 100 / confirmed)) : "N/A", "</td>\n        <td>").concat((0, _dateTime.returnDate)(lastUpdate), "</td>\n    </tr>\n  ");
 };
 },{"./date-time":"modules/date-time.js"}],"modules/DOM.js":[function(require,module,exports) {
 "use strict";

@@ -3,6 +3,7 @@ import { returnDate } from "./date-time";
 export const statisticsui = stats => `
   <table>
   <tr>
+    <th>#</th>
     <th>🌍 Country</th>
     <th>✔ Confirmed</th>
     <th>☠️Deaths</th>
@@ -11,14 +12,14 @@ export const statisticsui = stats => `
   </tr>
     ${stats
       .sort((a, b) => (a.confirmed > b.confirmed ? -1 : 1))
-      .map(statistic => statisticUI(statistic))
+      .map((statistic, index) => statisticUI(statistic, index))
       .join("")}
   </table>
 `;
 
-const statisticUI = ({ country, lastUpdate, confirmed, deaths }) =>
-  `
-    <tr>
+const statisticUI = ({ country, lastUpdate, confirmed, deaths }, index) =>
+  ` <tr>
+        <td>${index + 1}</td>
         <td>${country}</td>
         <td>${confirmed}</td>
         <td>${deaths}</td>
