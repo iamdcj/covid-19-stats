@@ -179,7 +179,7 @@ var statisticUI = function statisticUI(_ref) {
       lastUpdate = _ref.lastUpdate,
       confirmed = _ref.confirmed,
       deaths = _ref.deaths;
-  return "\n    <li>\n      <div class=\"stat  grid__item\">\n        <h2>\uD83C\uDF0D ".concat(country, "</h2>\n        <p>\u2623\uFE0F ").concat(confirmed, " confirmed cases</p>\n        <p>\u2620\uFE0F ").concat(deaths, " as of ").concat((0, _dateTime.returnDate)(lastUpdate), "</p>\n      </div>\n    </li>\n  ");
+  return "\n    <li>\n      <div class=\"stat  grid__item\">\n        <h2>\uD83C\uDF0D ".concat(country, "</h2>\n        <p>\u2623\uFE0F ").concat(confirmed, " confirmed cases</p>\n        <p>\u2620\uFE0F ").concat(deaths, " (").concat(Math.floor(deaths * 100 / confirmed), "%) as of ").concat((0, _dateTime.returnDate)(lastUpdate), "</p>\n      </div>\n    </li>\n  ");
 };
 },{"./date-time":"modules/date-time.js"}],"modules/DOM.js":[function(require,module,exports) {
 "use strict";

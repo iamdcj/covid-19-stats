@@ -15,7 +15,9 @@ const statisticUI = ({ country, lastUpdate, confirmed, deaths }) =>
       <div class="stat  grid__item">
         <h2>🌍 ${country}</h2>
         <p>☣️ ${confirmed} confirmed cases</p>
-        <p>☠️ ${deaths} as of ${returnDate(lastUpdate)}</p>
+        <p>☠️ ${deaths} (${Math.floor(
+    (deaths * 100) / confirmed
+  )}%) as of ${returnDate(lastUpdate)}</p>
       </div>
     </li>
   `;
