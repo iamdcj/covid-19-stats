@@ -170,7 +170,9 @@ var statisticsui = function statisticsui(stats) {
     return country !== "China";
   }).map(function (statistic) {
     return statisticUI(statistic);
-  }).sort().join(""), "\n  </ul>\n");
+  }).sort(function (a, b) {
+    return a.confirmed > b.confirmed ? -1 : 1;
+  }).join(""), "\n  </ul>\n");
 };
 
 exports.statisticsui = statisticsui;
@@ -180,7 +182,7 @@ var statisticUI = function statisticUI(_ref2) {
       lastUpdate = _ref2.lastUpdate,
       confirmed = _ref2.confirmed,
       deaths = _ref2.deaths;
-  return "\n    <li>\n      <div class=\"stat  grid__item\">\n        <h2><span class=\"icon  flag-icon-squared  flag-icon-".concat(country.substring(0, 2).toLowerCase(), "\"></span>").concat(country, "</h2>\n        <p>\u2705").concat(confirmed, " confirmed cases</p>\n        <p>\u2620\uFE0F").concat(deaths, " as of ").concat((0, _dateTime.returnDate)(lastUpdate), "</p>\n      </div>\n    </li>\n  ");
+  return "\n    <li>\n      <div class=\"stat  grid__item\">\n        <h2>\uD83C\uDF0D ".concat(country, "</h2>\n        <p>\u2623\uFE0F ").concat(confirmed, " confirmed cases</p>\n        <p>\u2620\uFE0F ").concat(deaths, " as of ").concat((0, _dateTime.returnDate)(lastUpdate), "</p>\n      </div>\n    </li>\n  ");
 };
 },{"./date-time":"modules/date-time.js"}],"modules/DOM.js":[function(require,module,exports) {
 "use strict";
@@ -206,12 +208,39 @@ var _requests = require("./modules/requests");
 
 var _DOM = require("./modules/DOM");
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 {
   _requests.request.then(function (response) {
     return response.json();
   }).then(function (_ref) {
     var data = _ref.data;
-    return (0, _DOM.renderStatistics)(data.covid19Stats);
+    return data.covid19Stats.filter(function (_ref2) {
+      var confirmed = _ref2.confirmed;
+      return confirmed > 0;
+    }).reduce(function (statistics, group) {
+      var currentCountry = group.country;
+      var existingGroup = statistics.find(function (_ref3) {
+        var country = _ref3.country;
+        return country === currentCountry;
+      });
+
+      if (existingGroup) {
+        existingGroup.confirmed += group.confirmed;
+        existingGroup.deaths += group.deaths;
+        existingGroup.recovered += group.recovered;
+      }
+
+      return existingGroup ? _toConsumableArray(statistics) : [].concat(_toConsumableArray(statistics), [group]);
+    }, []);
+  }).then(function (statitistics) {
+    return (0, _DOM.renderStatistics)(statitistics);
   }).catch(function (error) {
     return console.error(error.message);
   });

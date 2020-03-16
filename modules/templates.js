@@ -5,7 +5,7 @@ export const statisticsui = stats => `
     ${stats
       .filter(({ country }) => country !== "China")
       .map(statistic => statisticUI(statistic))
-      .sort()
+      .sort((a, b) => (a.confirmed > b.confirmed ? -1 : 1))
       .join("")}
   </ul>
 `;
@@ -14,11 +14,9 @@ const statisticUI = ({ country, lastUpdate, confirmed, deaths }) =>
   `
     <li>
       <div class="stat  grid__item">
-        <h2><span class="icon  flag-icon-squared  flag-icon-${country
-          .substring(0, 2)
-          .toLowerCase()}"></span>${country}</h2>
-        <p>✅${confirmed} confirmed cases</p>
-        <p>☠️${deaths} as of ${returnDate(lastUpdate)}</p>
+        <h2>🌍 ${country}</h2>
+        <p>☣️ ${confirmed} confirmed cases</p>
+        <p>☠️ ${deaths} as of ${returnDate(lastUpdate)}</p>
       </div>
     </li>
   `;
