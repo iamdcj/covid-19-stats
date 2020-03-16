@@ -2,13 +2,26 @@ import { request } from "./modules/requests";
 import { renderStatistics } from "./modules/rendering";
 import { setStatistics } from "./modules/data";
 import "./modules/events";
+import { _Loader } from "./modules/DOM";
 
 {
   request
     .then(response => response.json())
-    .then(({ data }) => {
-      const statistics = data.covid19Stats
-        .filter(({ confirmed }) => confirmed > 0)
+    .then(({ features }) => {
+      const statistics = features
+        .map(
+          ({
+            attributes: {
+              Last_Update: lastUpdate,
+              Confirmed: confirmed,
+              Recovered: recovered,
+              Deaths: deaths,
+              Active: active,
+              Country_Region: country
+            }
+          }) => ({ lastUpdate, confirmed, recovered, deaths, active, country })
+        )
+        .filter(({ confirmed }) => confirmed)
         .reduce((statistics, group) => {
           const { country: currentCountry } = group;
 
@@ -30,5 +43,8 @@ import "./modules/events";
       return statistics;
     })
     .then(statistics => renderStatistics(statistics))
-    .catch(error => console.error(error.message));
+    .catch(error => console.error(error.message))
+    .finally(() => {
+      _Loader.classList.remove("is--active");
+    });
 }

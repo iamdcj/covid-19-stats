@@ -1,10 +1,4 @@
 const endpoint =
-  "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats";
+  "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?f=json&where=(Confirmed%20%3E%200)&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=Confirmed%20desc%2CCountry_Region%20asc%2CProvince_State%20asc&outSR=102100";
 
-export const request = fetch(endpoint, {
-  method: "GET",
-  headers: {
-    "x-rapidapi-host": "covid-19-coronavirus-statistics.p.rapidapi.com",
-    "x-rapidapi-key": "6355586673mshe6fe75562f6751dp1f288cjsn9deb12384837"
-  }
-});
+export const request = fetch(endpoint);

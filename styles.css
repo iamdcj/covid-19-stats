@@ -19,9 +19,17 @@ body {
   box-sizing: inherit;
 }
 
+footer,
 header {
   display: flex;
   padding: 10px 10px;
+}
+
+footer {
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-c);
+  color: var(--white);
 }
 
 header > span {
@@ -76,4 +84,25 @@ th {
 
 .text--strong {
   font-weight: 800;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--color-c);
+  color: var(--white);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader.is--active {
+  opacity: 1;
+  visibility: visible;
 }

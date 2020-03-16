@@ -22,13 +22,30 @@
       <input type="text" name="query" id="query" placeholder="e.g. France" />
     </div>
     <section>
-      <div class="root"></div>
+      <table>
+        <thead>
+          <tr>
+            <th>🌍 Country</th>
+            <th class="bg--orange text--center">✔ Confirmed</th>
+            <th class="bg--red text--center">☠️Deaths</th>
+            <th class="text--center">Mortality Rate</th>
+            <th>📅 Last Updated</th>
+          </tr>
+        </thead>
+        <tbody class="root"></tbody>
+      </table>
     </section>
   </main>
-
   <footer>
-    <p>Data provided by <a href="https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics">KishCom</a></p>
+    <small>&copy; dcj</small>
+    <nav>
+      <ul>
+        <li><a href="https://github.com/iamdcj">Github</a></li>
+      </ul>
+    </nav>
   </footer>
+
+  <div class="loader is--active">Loading...</div>
 
 </body>
 
