@@ -154,7 +154,7 @@ var returnDate = function returnDate(date) {
 };
 
 exports.returnDate = returnDate;
-},{}],"modules/templates.js":[function(require,module,exports) {
+},{}],"modules/ui.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -165,7 +165,7 @@ exports.statisticsui = void 0;
 var _dateTime = require("./date-time");
 
 var statisticsui = function statisticsui(stats) {
-  return "\n  <table>\n  <tr>\n    <th>#</th>\n    <th>\uD83C\uDF0D Country</th>\n    <th class=\"bg--yellow text--center\">\u2714 Confirmed</th>\n    <th class=\"bg--red text--center\">\u2620\uFE0FDeaths</th>\n    <th class=\"text--center\">Mortality Rate</th>\n    <th>\uD83D\uDCC5 Last Updated</th>\n  </tr>\n    ".concat(stats.sort(function (a, b) {
+  return "\n  <table>\n  <tr>\n    <th>#</th>\n    <th>\uD83C\uDF0D Country</th>\n    <th class=\"bg--orange text--center\">\u2714 Confirmed</th>\n    <th class=\"bg--red text--center\">\u2620\uFE0FDeaths</th>\n    <th class=\"text--center\">Mortality Rate</th>\n    <th>\uD83D\uDCC5 Last Updated</th>\n  </tr>\n    ".concat(stats.sort(function (a, b) {
     return a.confirmed > b.confirmed ? -1 : 1;
   }).map(function (statistic, index) {
     return statisticUI(statistic, index);
@@ -179,7 +179,7 @@ var statisticUI = function statisticUI(_ref, index) {
       lastUpdate = _ref.lastUpdate,
       confirmed = _ref.confirmed,
       deaths = _ref.deaths;
-  return " <tr>\n        <td>".concat(index + 1, "</td>\n        <td>").concat(country, "</td>\n        <td class=\"bg--yellow-light text--center\">").concat(confirmed, "</td>\n        <td class=\"bg--red-light text--center text--strong\">").concat(deaths, "</td>\n        <td class=\"text--center\">").concat(deaths ? "".concat(Math.round(deaths * 100 / confirmed), "%") : "N/A", "</td>\n        <td>").concat((0, _dateTime.returnDate)(lastUpdate), "</td>\n    </tr>\n  ");
+  return " <tr>\n        <td>".concat(index + 1, "</td>\n        <td>").concat(country, "</td>\n        <td class=\"bg--orange-light text--center\">").concat(confirmed, "</td>\n        <td class=\"bg--red-light text--center text--strong\">").concat(deaths, "</td>\n        <td class=\"text--center\">").concat(deaths ? "".concat(Math.round(deaths * 100 / confirmed), "%") : "N/A", "</td>\n        <td>").concat((0, _dateTime.returnDate)(lastUpdate), "</td>\n    </tr>\n  ");
 };
 },{"./date-time":"modules/date-time.js"}],"modules/DOM.js":[function(require,module,exports) {
 "use strict";
@@ -187,28 +187,102 @@ var statisticUI = function statisticUI(_ref, index) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.searchInput = exports.totalCases = exports.container = void 0;
+var container = document.querySelector(".root");
+exports.container = container;
+var totalCases = document.querySelector(".total");
+exports.totalCases = totalCases;
+var searchInput = document.getElementById("query");
+exports.searchInput = searchInput;
+},{}],"modules/data.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setStatistics = exports.statistics = void 0;
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+var statistics = [];
+exports.statistics = statistics;
+
+var setStatistics = function setStatistics(data) {
+  exports.statistics = statistics = _toConsumableArray(data);
+};
+
+exports.setStatistics = setStatistics;
+},{}],"modules/rendering.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.renderStatistics = void 0;
 
-var _templates = require("./templates");
+var _ui = require("./ui");
 
-var container = document.querySelector("div");
-var totalCases = document.querySelector(".total");
+var _DOM = require("./DOM");
 
-var renderStatistics = function renderStatistics(statistics) {
-  var total = statistics.reduce(function (total, stat) {
+var _data = require("./data");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+var renderStatistics = function renderStatistics(stats) {
+  var total = _toConsumableArray(_data.statistics).reduce(function (total, stat) {
     return total + stat.confirmed;
   }, 0);
-  totalCases.innerText = total;
-  container.innerHTML = (0, _templates.statisticsui)(statistics);
+
+  _DOM.totalCases.innerText = total;
+  _DOM.container.innerHTML = (0, _ui.statisticsui)(stats);
 };
 
 exports.renderStatistics = renderStatistics;
-},{"./templates":"modules/templates.js"}],"scripts.js":[function(require,module,exports) {
+},{"./ui":"modules/ui.js","./DOM":"modules/DOM.js","./data":"modules/data.js"}],"modules/events.js":[function(require,module,exports) {
+"use strict";
+
+var _DOM = require("./DOM");
+
+var _data = require("./data");
+
+var _rendering = require("./rendering");
+
+function handleSearch(event) {
+  var results = _data.statistics.filter(function (_ref) {
+    var country = _ref.country;
+    return country.toLowerCase().includes(event.target.value.toLowerCase());
+  });
+
+  (0, _rendering.renderStatistics)(results);
+}
+
+if (!_DOM.searchInput) {
+  return;
+}
+
+_DOM.searchInput.addEventListener("keyup", handleSearch, true);
+},{"./DOM":"modules/DOM.js","./data":"modules/data.js","./rendering":"modules/rendering.js"}],"scripts.js":[function(require,module,exports) {
 "use strict";
 
 var _requests = require("./modules/requests");
 
-var _DOM = require("./modules/DOM");
+var _rendering = require("./modules/rendering");
+
+var _data = require("./modules/data");
+
+require("./modules/events");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -223,7 +297,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     return response.json();
   }).then(function (_ref) {
     var data = _ref.data;
-    return data.covid19Stats.filter(function (_ref2) {
+    var statistics = data.covid19Stats.filter(function (_ref2) {
       var confirmed = _ref2.confirmed;
       return confirmed > 0;
     }).reduce(function (statistics, group) {
@@ -241,13 +315,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       return existingGroup ? _toConsumableArray(statistics) : [].concat(_toConsumableArray(statistics), [group]);
     }, []);
-  }).then(function (statitistics) {
-    return (0, _DOM.renderStatistics)(statitistics);
+    (0, _data.setStatistics)(statistics);
+    return statistics;
+  }).then(function (statistics) {
+    return (0, _rendering.renderStatistics)(statistics);
   }).catch(function (error) {
     return console.error(error.message);
   });
 }
-},{"./modules/requests":"modules/requests.js","./modules/DOM":"modules/DOM.js"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/requests":"modules/requests.js","./modules/rendering":"modules/rendering.js","./modules/data":"modules/data.js","./modules/events":"modules/events.js"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

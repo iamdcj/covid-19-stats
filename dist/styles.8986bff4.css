@@ -2,11 +2,9 @@
   --color-a: rgb(150, 48, 48);
   --color-b: rgb(148, 98, 98);
   --color-c: rgb(244, 129, 7);
-  --color-d: rgb(205, 205, 205);
-  --color-e: rgb(238, 184, 4);
-  --color-f: rgb(227, 209, 151);
+  --color-d: rgb(244, 179, 110);
+  --color-e: rgb(205, 205, 205);
   --white: #fff;
-  --black: #000;
 }
 
 body {
@@ -41,13 +39,13 @@ th {
 }
 
 tr {
-  border-bottom: 1px solid var(--color-d);
+  border-bottom: 1px solid var(--color-e);
 }
 
 th {
   font-weight: 800;
   text-align: left;
-  background-color: var(--color-c);
+  background-color: var(--color-e);
   color: var(--white);
   color: #fff;
 }
@@ -66,14 +64,14 @@ th {
   color: var(--white);
 }
 
-.bg--yellow {
-  background-color: var(--color-e);
+.bg--orange {
+  background-color: var(--color-c);
   color: var(--white);
 }
 
-.bg--yellow-light {
-  background-color: var(--color-f);
-  color: var(--black);
+.bg--orange-light {
+  background-color: var(--color-d);
+  color: var(--white);
 }
 
 .text--strong {
