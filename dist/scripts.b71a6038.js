@@ -165,7 +165,7 @@ exports.statisticsui = void 0;
 var _dateTime = require("./date-time");
 
 var statisticsui = function statisticsui(stats) {
-  return "\n  <table>\n  <tr>\n    <th>#</th>\n    <th>\uD83C\uDF0D Country</th>\n    <th class=\"text--center\">\u2714 Confirmed</th>\n    <th class=\"bg--red text--center\">\u2620\uFE0FDeaths</th>\n    <th class=\"text--center\">Mortality Rate</th>\n    <th>\uD83D\uDCC5 Last Updated</th>\n  </tr>\n    ".concat(stats.sort(function (a, b) {
+  return "\n  <table>\n  <tr>\n    <th>#</th>\n    <th>\uD83C\uDF0D Country</th>\n    <th class=\"bg--yellow text--center\">\u2714 Confirmed</th>\n    <th class=\"bg--red text--center\">\u2620\uFE0FDeaths</th>\n    <th class=\"text--center\">Mortality Rate</th>\n    <th>\uD83D\uDCC5 Last Updated</th>\n  </tr>\n    ".concat(stats.sort(function (a, b) {
     return a.confirmed > b.confirmed ? -1 : 1;
   }).map(function (statistic, index) {
     return statisticUI(statistic, index);
@@ -179,7 +179,7 @@ var statisticUI = function statisticUI(_ref, index) {
       lastUpdate = _ref.lastUpdate,
       confirmed = _ref.confirmed,
       deaths = _ref.deaths;
-  return " <tr>\n        <td>".concat(index + 1, "</td>\n        <td>").concat(country, "</td>\n        <td class=\"text--center\">").concat(confirmed, "</td>\n        <td class=\"bg--red-light text--center text--strong\">").concat(deaths, "</td>\n        <td class=\"text--center\">").concat(deaths ? "".concat(Math.round(deaths * 100 / confirmed)) : "N/A", "</td>\n        <td>").concat((0, _dateTime.returnDate)(lastUpdate), "</td>\n    </tr>\n  ");
+  return " <tr>\n        <td>".concat(index + 1, "</td>\n        <td>").concat(country, "</td>\n        <td class=\"bg--yellow-light text--center\">").concat(confirmed, "</td>\n        <td class=\"bg--red-light text--center text--strong\">").concat(deaths, "</td>\n        <td class=\"text--center\">").concat(deaths ? "".concat(Math.round(deaths * 100 / confirmed), "%") : "N/A", "</td>\n        <td>").concat((0, _dateTime.returnDate)(lastUpdate), "</td>\n    </tr>\n  ");
 };
 },{"./date-time":"modules/date-time.js"}],"modules/DOM.js":[function(require,module,exports) {
 "use strict";

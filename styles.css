@@ -2,7 +2,11 @@
   --color-a: rgb(150, 48, 48);
   --color-b: rgb(148, 98, 98);
   --color-c: rgb(244, 129, 7);
+  --color-d: rgb(205, 205, 205);
+  --color-e: rgb(238, 184, 4);
+  --color-f: rgb(227, 209, 151);
   --white: #fff;
+  --black: #000;
 }
 
 body {
@@ -36,6 +40,10 @@ th {
   padding: 10px;
 }
 
+tr {
+  border-bottom: 1px solid var(--color-d);
+}
+
 th {
   font-weight: 800;
   text-align: left;
@@ -56,6 +64,16 @@ th {
 .bg--red-light {
   background-color: var(--color-b);
   color: var(--white);
+}
+
+.bg--yellow {
+  background-color: var(--color-e);
+  color: var(--white);
+}
+
+.bg--yellow-light {
+  background-color: var(--color-f);
+  color: var(--black);
 }
 
 .text--strong {
