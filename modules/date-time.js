@@ -3,6 +3,5 @@ export const returnDate = date => {
 
   if (isNaN(_Date)) return;
 
-  const settings = { year: "numeric", month: "long", day: "numeric" };
-  return _Date.toLocaleDateString("en-us", settings);
+  return _Date.toLocaleDateString("en-us");
 };

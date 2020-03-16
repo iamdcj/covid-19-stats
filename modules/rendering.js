@@ -13,5 +13,9 @@ export const renderStatistics = stats => {
     0
   );
 
-  container.innerHTML = statisticsui(stats);
+  if (stats.length < 1) {
+    container.innerHTML = `<tr><td colspan="5"><p>Sorry, no results for that search. Please adjust your query.<p></td></tr>`;
+  } else {
+    container.innerHTML = statisticsui(stats);
+  }
 };

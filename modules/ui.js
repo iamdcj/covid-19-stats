@@ -20,6 +20,6 @@ const statisticUI = ({ country, lastUpdate, confirmed, deaths }, index) =>
         <td class="text--center">
           ${deaths ? returnMortalityRate(deaths, confirmed) : `N/A`}
         </td>
-        <td>${returnDate(lastUpdate)}</td>
+        <td class="text--right text--small">${returnDate(lastUpdate)}</td>
     </tr>
   `;

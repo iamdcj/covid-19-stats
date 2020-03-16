@@ -11,18 +11,17 @@
 
 <body>
 
-  <main>
-    <header class="site-header">
-      <div class="site-header__inner">
-        <h1>COVID-19 | Live Statistics (via <a href="https://www.arcgis.com/index.html">ArcGIS Online</a>)</h1>
-        <div class="control">
-          <label for="query">Search by country</label>
-          <input type="text" name="query" id="query" placeholder="e.g. France" />
-        </div>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <h1>Coronavirus Disease 2019 (COVID-19) | Live Statistics</h1>
+      <div class="control">
+        <label for="query">Search by country</label>
+        <input type="text" name="query" id="query" placeholder="e.g. France" />
       </div>
-    </header>
+    </div>
+  </header>
+  <main>
     <section>
-
       <table>
         <thead>
           <tr>
@@ -30,21 +29,24 @@
             <th class="text--center">Confirmed (<span class="total total-cases"></span>)</th>
             <th class="text--center">Deaths (<span class="total total-deaths"></span>)</th>
             <th class="text--center">Mortality Rate</th>
-            <th>Last Updated</th>
+            <th class="text--small text--right">Last Updated</th>
           </tr>
         </thead>
         <tbody class="root"></tbody>
       </table>
+      <p><small>Data provided by <a href="https://www.arcgis.com/index.html">ArcGIS Online</a></small></p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <small>&copy; dcj</small>
-    <nav>
-      <ul>
-        <li><a href="https://github.com/iamdcj">Github</a></li>
-      </ul>
-    </nav>
+    <div class="site-footer__inner">
+      <small>&copy; dcj</small>
+      <nav>
+        <ul>
+          <li><a href="https://github.com/iamdcj">Github</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 
   <div class="loader is--active">Loading...</div>
