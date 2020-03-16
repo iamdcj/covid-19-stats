@@ -22,7 +22,7 @@ const statisticUI = ({ country, lastUpdate, confirmed, deaths }) =>
         <td>${country}</td>
         <td>${confirmed}</td>
         <td>${deaths}</td>
-        <td>${Math.floor((deaths * 100) / confirmed)}</td>
+        <td>${deaths ? `${Math.round((deaths * 100) / confirmed)}` : `N/A`}</td>
         <td>${returnDate(lastUpdate)}</td>
     </tr>
   `;

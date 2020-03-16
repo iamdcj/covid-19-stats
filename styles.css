@@ -10,7 +10,22 @@ body {
   box-sizing: inherit;
 }
 
+header {
+  display: flex;
+  padding: 10px 20px;
+}
+
+table {
+  width: 100%;
+}
+
 td,
 th {
   padding: 10px;
+}
+
+th {
+  text-align: left;
+  background-color: rgb(244, 129, 7);
+  color: #fff;
 }
