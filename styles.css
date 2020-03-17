@@ -1,4 +1,5 @@
 :root {
+  box-sizing: border-box;
   --color-a: rgb(150, 48, 48);
   --color-b: rgb(148, 98, 98);
   --color-c: rgb(244, 129, 7);
@@ -6,6 +7,7 @@
   --color-e: rgb(92, 152, 247);
   --color-f: rgb(222, 233, 252);
   --color-g: rgb(225, 225, 225);
+  --bio-yellow: #eadf0c;
   --white: #fff;
 }
 
@@ -27,21 +29,22 @@ body {
   justify-content: center;
   align-items: center;
   padding: 15px 10px;
+  background-color: var(--color-c);
+  color: var(--white);
 }
 
 a {
   color: currentColor;
 }
 
-body {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100%;
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.site-footer {
-  background-color: var(--color-c);
-  color: var(--white);
+.site-header {
+  margin-bottom: 20px;
 }
 
 .site-header > span {
@@ -49,8 +52,7 @@ body {
   margin: 0 10px;
 }
 
-.site-footer__inner,
-.site-header__inner {
+.site-footer__inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,20 +60,56 @@ body {
   max-width: 900px;
 }
 
-section {
+.site-header__inner {
+  width: 100%;
+  max-width: 900px;
+}
+
+@media only screen and (min-width: 700px) {
+  .section--overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.totals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.control {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+}
+
+.section {
+  width: 100%;
+  max-width: 900px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.section--data {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
+  justify-content: center;
 }
 
-table {
+.table-wrapper {
+  width: 100%;
+  margin-bottom: 10px;
+  overflow: auto;
   border-left: 1px solid var(--color-g);
   border-top: 1px solid var(--color-g);
   border-bottom: 1px solid var(--color-g);
+}
+
+table {
   width: 100%;
-  max-width: 900px;
-  margin-bottom: 10px;
 }
 
 td,
@@ -128,6 +166,14 @@ th {
   text-align: right;
 }
 
+.color--red {
+  color: var(--color-b);
+}
+
+.color--orange {
+  color: var(--color-c);
+}
+
 .loader {
   display: flex;
   justify-content: center;
@@ -137,7 +183,7 @@ th {
   left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: var(--color-c);
+  background-color: var(--bio-yellow);
   color: var(--white);
   opacity: 0;
   visibility: hidden;
@@ -157,8 +203,8 @@ th {
   padding: 30px;
 }
 
-.total {
-  font-size: 14px;
+.total > div {
+  font-size: 28px;
 }
 
 tr:nth-child(even) {

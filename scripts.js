@@ -8,6 +8,10 @@ import { _Loader } from "./modules/DOM";
   request
     .then(response => response.json())
     .then(({ features }) => {
+      if (!features) {
+        throw Error("No data");
+      }
+
       const statistics = features
         .map(
           ({

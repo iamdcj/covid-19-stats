@@ -7,10 +7,7 @@ const returnMortalityRate = (deaths, confirmed) => {
 };
 
 export const statisticsui = stats =>
-  stats
-    .sort((a, b) => (a.confirmed > b.confirmed ? -1 : 1))
-    .map((statistic, index) => statisticUI(statistic, index))
-    .join("");
+  stats.map((statistic, index) => statisticUI(statistic, index)).join("");
 
 const statisticUI = ({ country, lastUpdate, confirmed, deaths }, index) =>
   ` <tr>

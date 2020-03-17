@@ -10,30 +10,43 @@
 </head>
 
 <body>
-
   <header class="site-header">
     <div class="site-header__inner">
-      <h1>Coronavirus Disease 2019 (COVID-19) | Live Statistics</h1>
+      <h1>Coronavirus Disease 2019 | Live Statistics</h1>
+    </div>
+  </header>
+  <main>
+    <section class="section  section--overview">
+      <div class="totals">
+        <div class="total">
+          <p>Confirmed Cases: <div class="text--strong  total-cases color--orange"></div>
+          </p>
+        </div>
+        <div class="total">
+          <p>Deaths: <div class="text--strong total-deaths color--red"></div>
+          </p>
+        </div>
+      </div>
       <div class="control">
         <label for="query">Search by country</label>
         <input type="text" name="query" id="query" placeholder="e.g. France" />
       </div>
-    </div>
-  </header>
-  <main>
-    <section>
-      <table>
-        <thead>
-          <tr>
-            <th>Country</th>
-            <th class="text--center">Confirmed (<span class="total total-cases"></span>)</th>
-            <th class="text--center">Deaths (<span class="total total-deaths"></span>)</th>
-            <th class="text--center">Mortality Rate</th>
-            <th class="text--small text--right">Last Updated</th>
-          </tr>
-        </thead>
-        <tbody class="root"></tbody>
-      </table>
+    </section>
+    <section class="section  section--data">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Country</th>
+              <th class="text--center">Confirmed</th>
+              <th class="text--center">Deaths</th>
+              <th class="text--center">Mortality Rate</th>
+              <th class="text--small text--right">Last Updated</th>
+            </tr>
+          </thead>
+          <tbody class="root"></tbody>
+        </table>
+      </div>
       <p><small>Data provided by <a href="https://www.arcgis.com/index.html">ArcGIS Online</a></small></p>
     </section>
   </main>
