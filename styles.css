@@ -15,6 +15,8 @@ body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
+  display: flex;
+  flex-direction: column;
 }
 
 *,
@@ -31,6 +33,10 @@ body {
   padding: 15px 10px;
   background-color: var(--color-c);
   color: var(--white);
+}
+
+.site-footer {
+  margin-top: auto;
 }
 
 a {
