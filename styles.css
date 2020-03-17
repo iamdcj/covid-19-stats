@@ -79,6 +79,17 @@ main {
   gap: 10px;
 }
 
+@media only screen and (max-width: 700px) {
+  .totals {
+    margin-bottom: 10px;
+  }
+
+  .total {
+    display: grid;
+    justify-content: center;
+  }
+}
+
 .control {
   display: grid;
   gap: 10px;
