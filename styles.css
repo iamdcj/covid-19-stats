@@ -41,6 +41,7 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 0 10px;
 }
 
 .site-header {
@@ -88,7 +89,6 @@ main {
 .section {
   width: 100%;
   max-width: 900px;
-  padding: 0 10px;
   margin-bottom: 10px;
 }
 
