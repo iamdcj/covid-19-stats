@@ -13,16 +13,16 @@ const setSortAction = (_El, order) => {
   sortIndicator.innerText = sortIcons[order] || "↕";
 };
 
-function handleSorting(event) {
-  const _El = event.target;
+function handleSorting() {
+  const _El = this;
 
   if (!_El) {
     return;
   }
 
   const sortIndicator = _El.querySelector("span");
-  const sortType = event.target.dataset.sort;
-  const sortOrder = event.target.dataset.sortOrder;
+  const sortType = _El.dataset.sort;
+  const sortOrder = _El.dataset.sortOrder;
 
   sortControls.forEach(control => {
     setSortAction(control, "");

@@ -5,5 +5,5 @@ import { handleSorting } from "./sorting";
 searchInput.addEventListener("keyup", handleSearch, true);
 
 sortControls.forEach(control => {
-  control.addEventListener("click", handleSorting, true);
+  control.addEventListener("click", handleSorting, false);
 });
