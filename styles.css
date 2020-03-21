@@ -4,9 +4,10 @@
   --color-b: rgb(148, 98, 98);
   --color-c: rgb(244, 129, 7);
   --color-d: rgb(244, 179, 110);
-  --color-e: rgb(92, 152, 247);
-  --color-f: rgb(222, 233, 252);
+  --color-e: #708090;
+  --color-f: rgb(235, 235, 235);
   --color-g: rgb(225, 225, 225);
+  --color-h: #000;
   --bio-yellow: #eadf0c;
   --white: #fff;
 }
@@ -33,6 +34,10 @@ body {
   padding: 15px 10px;
   background-color: var(--color-c);
   color: var(--white);
+}
+
+.site-header {
+  background-color: var(--color-h);
 }
 
 .site-footer {
@@ -117,9 +122,10 @@ main {
 }
 
 .table-wrapper {
+  display: grid;
   width: 100%;
+  grid-template-columns: minmax(120px, 30%) minmax(70%, 1fr);
   margin-bottom: 10px;
-  overflow: auto;
   border-left: 1px solid var(--color-g);
   border-top: 1px solid var(--color-g);
   border-bottom: 1px solid var(--color-g);
@@ -129,10 +135,24 @@ table {
   width: 100%;
 }
 
+.table-fixed {
+  overflow: hidden;
+  border-right: 1px solid var(--color-g);
+}
+
+.table-responsive {
+  overflow-x: scroll;
+}
+
+.table-responsive td,
+.table-responsive th {
+  border-right: 1px solid var(--color-g);
+}
+
 td,
 th {
-  border-right: 1px solid var(--color-g);
   padding: 10px;
+  white-space: nowrap;
 }
 
 tr {
