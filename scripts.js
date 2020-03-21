@@ -4,6 +4,9 @@ import { setStatistics } from "./modules/data";
 import "./modules/events";
 
 {
+  const returnMortalityRate = (deaths, confirmed) =>
+    Math.round((deaths * 100) / confirmed);
+
   request
     .then(response => response.json())
     .then(({ features }) => {
@@ -22,7 +25,18 @@ import "./modules/events";
               Active: active,
               Country_Region: country
             }
-          }) => ({ lastUpdate, confirmed, recovered, deaths, active, country })
+          }) => {
+            const rate = returnMortalityRate(deaths, confirmed);
+            return {
+              lastUpdate,
+              confirmed,
+              recovered,
+              deaths,
+              active,
+              country,
+              rate
+            };
+          }
         )
         .filter(({ confirmed }) => confirmed)
         .reduce((statistics, group) => {

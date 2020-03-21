@@ -52,7 +52,9 @@
           <table>
             <thead>
               <tr>
-                <th>Location</th>
+                <th><button class="btn--sort" data-sort="country" data-sort-order="" type="button">Location
+                    <span>&#x2195;</span></button>
+                </th>
               </tr>
             </thead>
             <tbody class="root-main"></tbody>
@@ -62,9 +64,18 @@
           <table>
             <thead>
               <tr>
-                <th colspan="1" class="text--center ">Confirmed</th>
-                <th colspan="3" class="text--center ">Deaths</th>
-                <th class="text--center">Rate</th>
+                <th colspan="1" class="text--center ">
+                  <button class="btn--sort" data-sort="confirmed" data-sort-order="desc" type="button">Confirmed
+                    <span>&#x2193;</span></button>
+                </th>
+                <th colspan="3" class="text--center ">
+                  <button class="btn--sort" data-sort="deaths" data-sort-order="" type="button">Deaths
+                    <span>&#x2195;</span></button>
+                </th>
+                <th class="text--center">
+                  <button class="btn--sort" data-sort="rate" data-sort-order="" type="button">Rate
+                    <span>&#x2195;</span></button>
+                </th>
                 <th class="text--small text--right">Updated</th>
               </tr>
             </thead>
