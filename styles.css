@@ -55,6 +55,10 @@ main {
   padding: 0 10px;
 }
 
+h1 > span {
+  padding: 0 5px;
+}
+
 .site-header {
   margin-bottom: 20px;
 }
@@ -251,4 +255,19 @@ tr:nth-child(even) {
 
 input {
   padding: 10px;
+}
+
+.blinker {
+  height: 10px;
+  animation: 1500ms blink ease infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
