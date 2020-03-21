@@ -2,7 +2,6 @@ import { request } from "./modules/requests";
 import { renderStatistics } from "./modules/rendering";
 import { setStatistics } from "./modules/data";
 import "./modules/events";
-import { _Loader } from "./modules/DOM";
 
 {
   request
@@ -47,8 +46,5 @@ import { _Loader } from "./modules/DOM";
       return statistics;
     })
     .then(statistics => renderStatistics(statistics))
-    .catch(error => console.error(error.message))
-    .finally(() => {
-      _Loader.classList.remove("is--active");
-    });
+    .catch(error => console.error(error.message));
 }
