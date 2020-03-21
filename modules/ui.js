@@ -24,8 +24,8 @@ const statisticsMain = (country, index) =>
 
 const statisticsResponsive = ({ lastUpdate, confirmed, deaths }, index) =>
   ` <tr>
-      <td  colspan="2" class="text--center">${confirmed}</td>
-      <td  colspan="2" class="text--center text--strong">${deaths}</td>
+      <td  colspan="2" class="color--orange text--center text--strong">${confirmed}</td>
+      <td  colspan="2" class="color--red text--center text--strong">${deaths}</td>
       <td class="text--center">
           ${deaths ? returnMortalityRate(deaths, confirmed) : `N/A`}
       </td>

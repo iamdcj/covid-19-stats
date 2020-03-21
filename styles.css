@@ -2,7 +2,7 @@
   box-sizing: border-box;
   --color-a: rgb(150, 48, 48);
   --color-b: rgb(148, 98, 98);
-  --color-c: rgb(244, 129, 7);
+  --color-c: rgb(208, 108, 3);
   --color-d: rgb(244, 179, 110);
   --color-e: #708090;
   --color-f: rgb(235, 235, 235);
@@ -124,11 +124,12 @@ main {
 .table-wrapper {
   display: grid;
   width: 100%;
-  grid-template-columns: minmax(120px, 30%) minmax(70%, 1fr);
+  grid-template-columns: minmax(30%, 35%) minmax(65%, 70%);
   margin-bottom: 10px;
   border-left: 1px solid var(--color-g);
   border-top: 1px solid var(--color-g);
   border-bottom: 1px solid var(--color-g);
+  overflow: hidden;
 }
 
 table {
