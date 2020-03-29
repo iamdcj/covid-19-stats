@@ -39,6 +39,7 @@ import "./modules/events";
           }
         )
         .filter(({ confirmed }) => confirmed)
+
         .reduce((statistics, group) => {
           const { country: currentCountry } = group;
 
@@ -53,7 +54,8 @@ import "./modules/events";
           }
 
           return existingGroup ? [...statistics] : [...statistics, group];
-        }, []);
+        }, [])
+        .sort((a, b) => b.confirmed - a.confirmed);
 
       setStatistics(statistics);
 
