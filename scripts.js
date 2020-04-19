@@ -39,22 +39,6 @@ import "./modules/events";
           }
         )
         .filter(({ confirmed }) => confirmed)
-
-        .reduce((statistics, group) => {
-          const { country: currentCountry } = group;
-
-          const existingGroup = statistics.find(
-            ({ country }) => country === currentCountry
-          );
-
-          if (existingGroup) {
-            existingGroup.confirmed += group.confirmed;
-            existingGroup.deaths += group.deaths;
-            existingGroup.recovered += group.recovered;
-          }
-
-          return existingGroup ? [...statistics] : [...statistics, group];
-        }, [])
         .sort((a, b) => b.confirmed - a.confirmed);
 
       setStatistics(statistics);
