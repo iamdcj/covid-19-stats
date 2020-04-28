@@ -4,11 +4,15 @@ import { setStatistics } from "./modules/data";
 import "./modules/events";
 
 {
-  const returnMortalityRate = (deaths, confirmed) =>
-    Math.round((deaths * 100) / confirmed);
+  const returnMortalityRate = (deaths, confirmed) => {
+    console.log(deaths);
+    console.log(confirmed);
+
+    return Math.round((deaths * 100) / confirmed);
+  };
 
   request
-    .then(response => response.json())
+    .then((response) => response.json())
     .then(({ features }) => {
       if (!features) {
         throw Error("No data");
@@ -23,10 +27,10 @@ import "./modules/events";
               Recovered: recovered,
               Deaths: deaths,
               Active: active,
-              Country_Region: country
-            }
+              Country_Region: country,
+            },
           }) => {
-            const rate = returnMortalityRate(deaths, confirmed);
+            
             return {
               lastUpdate,
               confirmed,
@@ -34,17 +38,41 @@ import "./modules/events";
               deaths,
               active,
               country,
-              rate
             };
           }
         )
         .filter(({ confirmed }) => confirmed)
+        .reduce((statistics, group) => {
+          const { country: currentCountry } = group;
+
+          const existingGroup = statistics.find(
+            ({ country }) => country === currentCountry
+          );
+
+          if (existingGroup) {
+            existingGroup.confirmed += group.confirmed;
+            existingGroup.deaths += group.deaths;
+            existingGroup.recovered += group.recovered;
+          }
+
+
+
+          return existingGroup ? [...statistics] : [...statistics, group];
+        }, [])
+        .map(data => {
+         const rate = returnMortalityRate(data.deaths, data.confirmed);
+
+          return {
+            ...data,
+            rate
+          }
+        })
         .sort((a, b) => b.confirmed - a.confirmed);
 
       setStatistics(statistics);
 
       return statistics;
     })
-    .then(statistics => renderStatistics(statistics))
-    .catch(error => console.error(error.message));
+    .then((statistics) => renderStatistics(statistics))
+    .catch((error) => console.error(error.message));
 }
