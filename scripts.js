@@ -4,12 +4,7 @@ import { setStatistics } from "./modules/data";
 import "./modules/events";
 
 {
-  const returnMortalityRate = (deaths, confirmed) => {
-    console.log(deaths);
-    console.log(confirmed);
-
-    return Math.round((deaths * 100) / confirmed);
-  };
+  const returnMortalityRate = (deaths, confirmed) => Math.round((deaths * 100) / confirmed);
 
   request
     .then((response) => response.json())
@@ -61,7 +56,7 @@ import "./modules/events";
         }, [])
         .map(data => {
          const rate = returnMortalityRate(data.deaths, data.confirmed);
-
+          
           return {
             ...data,
             rate
