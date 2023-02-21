@@ -19,6 +19,8 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 *,
