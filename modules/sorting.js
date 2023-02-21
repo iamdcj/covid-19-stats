@@ -20,7 +20,6 @@ function handleSorting() {
     return;
   }
 
-  const sortIndicator = _El.querySelector("span");
   const sortType = _El.dataset.sort;
   const sortOrder = _El.dataset.sortOrder;
 
