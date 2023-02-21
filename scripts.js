@@ -1,4 +1,3 @@
-import { request } from "./modules/requests";
 import { renderStatistics } from "./modules/rendering";
 import { setStatistics } from "./modules/data";
 import "./modules/events";
@@ -6,7 +5,7 @@ import "./modules/events";
 {
   const returnMortalityRate = (deaths, confirmed) => Math.round((deaths * 100) / confirmed);
 
-  request
+  fetch(process.env.DATA_URL)
     .then((response) => response.json())
     .then(({ features }) => {
       if (!features) {
